@@ -1,4 +1,4 @@
- Personal Expenses Tracker 
+PERSONAL EXPENSES TRACKER
 
 This project is a  **command-line application**
 designed to help users track daily expenses, view past spending, and
