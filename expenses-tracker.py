@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+from datetime import datetime
+import os
 #reads the balance from balance.txt and returns it 
 def read_balance():
     with open("balance.txt", "r") as file:
@@ -123,55 +124,44 @@ def view_expenses_menu():
 
 #Searches for an item name inside a date file
 def search_by_item():
-    print("\n===SEARCH BY ITEM NAME===")
+    print("\n=== SEARCH BY ITEM NAME ===")
+    item_name = input("Enter item name: ").lower()
 
-    date = input("Enter date(YYYY-MM-DD): ")
-    filename = f"expenses_{date}.txt"
-    try:
-        with open(filename, "r") as file:
-            lines = file.readlines()
-    except FileNotFoundError:
-        print("No expenses found for this date.")
-        return
+    results = []
 
-    item_name = input("Enter item name to search: ").lower()
-    results =[]
-    for line in lines:
-        if item_name in line.lower():
-            results.append(line.strip())
+    for file in os.listdir():
+        if file.startswith("expenses_") and file.endswith(".txt"):
+            with open(file, "r") as f:
+                for line in f:
+                    if item_name in line.lower():
+                        results.append(line.strip())   
 
     if results:
-        print("\n--- Results found---")
+        print("\n--- Results Found ---")
         for r in results:
             print(r)
     else:
         print("No matching items found.")
 
+
+
 #Searches for an amount inside a date file
 def search_by_amount():
     print("\n=== SEARCH BY AMOUNT ===")
-
-    date = input("Enter date (YYYY-MM-DD): ")
-    filename = f"expenses_{date}.txt"
-
-    try:
-        with open(filename, "r") as file:
-            lines = file.readlines()
-    except FileNotFoundError:
-        print("No expenses found for this date.")
-        return
-
-    amount = input("Enter amount to search: ")
-
+    amount = input("Enter amount: ")
 
     if not amount.replace('.', '', 1).isdigit():
         print("Invalid amount! Must be a number.")
         return
 
     results = []
-    for line in lines:
-        if amount in line:
-            results.append(line.strip())
+
+    for file in os.listdir():
+        if file.startswith("expenses_") and file.endswith(".txt"):
+            with open(file, "r") as f:
+                for line in f:
+                    if amount in line:
+                        results.append(line.strip()) 
 
     if results:
         print("\n--- Results Found ---")
