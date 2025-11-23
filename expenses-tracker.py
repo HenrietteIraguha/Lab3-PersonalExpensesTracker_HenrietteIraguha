@@ -33,7 +33,7 @@ def check_balance():
 
     available = balance - total_expenses
 
-    print("\n===CHECK REMAINING BALANCE===")
+    print("\n=======CHECK REMAINING BALANCE=======")
     print(f"Current balance:{balance}")
     print(f"Total Expenses:{total_expenses}")
     print(f"Available Balance:{available}")
@@ -50,10 +50,13 @@ def check_balance():
 
 #Adds a new expense to the correct expense file
 def add_expense():
-    print("\n===ADD NEW EXPENSE===")
+    print("\n=======ADD NEW EXPENSE=======")
 
     balance = read_balance()
-    print(f"Available Balance: {balance}")
+    total_expenses = calculate_total_expenses()
+    available_balance = balance - total_expenses
+
+    print(f"Available Balance: {available_balance}")
 
     date =input("Enter date(YYY-MM-DD):")
 
@@ -99,7 +102,7 @@ def add_expense():
   
   # shows  expenses for a specific date
 def view_expenses():
-    print("\n=== VIEW EXPENSES===")
+    print("\n======= VIEW EXPENSES=======")
     date =input("Enter the date (YYYY-MM-DD): ")
     filename = f"expenses_{date}.txt"
 
@@ -114,7 +117,7 @@ def view_expenses():
 
 #Shows submenu to search expenses
 def view_expenses_menu():
-    print("\n====VIEW EXPENSES===")
+    print("\n=======VIEW EXPENSES=======")
     print("1. Search by item name")
     print("2. Search by amount")
     print("3. Back to main menu")
@@ -173,7 +176,7 @@ def search_by_amount():
 
 # shows the main menu of the program 
 def main_menu():
-    print('\n===PERSONAL EXPENSES TRACKER===')
+    print('\n=======PERSONAL EXPENSES TRACKER=======')
     print("1. Check remaining Balance")
     print("2. View Expenses")
     print("3. Add New Expense")
